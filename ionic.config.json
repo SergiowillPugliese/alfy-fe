@@ -1,0 +1,7 @@
+{
+  "name": "Alfy",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
