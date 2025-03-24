@@ -1,0 +1,74 @@
+@let shoppingListValue = shoppingList();
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  @if(shoppingListValue && shoppingListValue!.length) {
+  <div class="flex flex-col lg:flex-row gap-3">
+    @for (item of shoppingListValue; track item._id) {
+    <div class="pb-3 w-full lg:w-[20rem]">
+      <ion-card
+        class="ion-padding cursor-pointer"
+        (click)="openShoppingList(item.list)"
+      >
+        <ion-card-header>
+          <ion-card-title>{{ item.name }}</ion-card-title>
+          <ion-card-subtitle>Mettere la data</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>{{ item.list.length || 'pippo' }}</ion-card-content>
+      </ion-card>
+    </div>
+    }
+  </div>
+  } @else {
+  <div class="size-full flex flex-col justify-center items-center">
+    <h2 class="text-[var(--color-stone-400)] pb-3 text-center text-lg">
+      Non hai ancora creato liste della spesa
+    </h2>
+    <ion-button>crea una nuova lista della spesa</ion-button>
+  </div>
+  }
+  <ion-fab class="bottom-3 right-3" (click)="setOpen(true)">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpen(false)">Close</ion-button>
+          </ion-buttons>
+          <ion-title>Aggiungi Lista</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <p class="p-3 pb-5">
+          Inserisci un nome per la tua lista della spesa.
+          <br />
+          es: supermercato, casalinghi, cane/gatto
+        </p>
+
+        <form [formGroup]="formGroup" (ngSubmit)="addShoppingList()">
+          <div>
+            <ion-list>
+              <ion-item>
+                <ion-input
+                  label="Nome lista della spesa"
+                  labelPlacement="stacked"
+                  [clearInput]="true"
+                >
+                </ion-input>
+              </ion-item>
+            </ion-list>
+          </div>
+        </form>
+
+        <ion-button class="w-full absolute bottom-0" (click)="setOpen(false)"
+          >Close</ion-button
+        >
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>
