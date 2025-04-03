@@ -24,7 +24,9 @@
     <h2 class="text-[var(--color-stone-400)] pb-3 text-center text-lg">
       Non hai ancora creato liste della spesa
     </h2>
-    <ion-button>crea una nuova lista della spesa</ion-button>
+    <ion-button (click)="setOpen(true)">
+      crea una nuova lista della spesa
+    </ion-button>
   </div>
   }
   <ion-fab class="bottom-3 right-3" (click)="setOpen(true)">
@@ -35,7 +37,7 @@
 
   <ion-modal [isOpen]="isModalOpen">
     <ng-template>
-      <ion-header>
+      <ion-header class="ion-padding">
         <ion-toolbar>
           <ion-buttons slot="end">
             <ion-button (click)="setOpen(false)">Close</ion-button>
@@ -58,17 +60,23 @@
                   label="Nome lista della spesa"
                   labelPlacement="stacked"
                   [clearInput]="true"
+                  formControlName="name"
                 >
                 </ion-input>
               </ion-item>
             </ion-list>
           </div>
         </form>
-
-        <ion-button class="w-full absolute bottom-0" (click)="setOpen(false)"
-          >Close</ion-button
-        >
       </ion-content>
+      <ion-footer>
+        <ion-button
+          [disabled]="formGroup.invalid"
+          class="w-full"
+          (click)="addShoppingList()"
+        >
+          Aggiungi
+        </ion-button>
+      </ion-footer>
     </ng-template>
   </ion-modal>
 </ion-content>

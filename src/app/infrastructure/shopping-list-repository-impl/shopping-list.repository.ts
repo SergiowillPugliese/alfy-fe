@@ -2,21 +2,22 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { map, Observable, of, tap } from 'rxjs';
 import { ShoppingItem } from 'src/app/core/domains/shopping-list/entities/shopping.item';
-import {
-  SHOPPING_ITEM_REPOSITORY,
-  ShoppingItemRepository,
-} from 'src/app/core/domains/shopping-list/repository/shopping-item.repository';
 import { BaseResponseInterface } from 'src/app/features/shared/interface/base-responce.interface';
 import { environment } from 'src/environments/environment';
 
-@Injectable()
-export class ShoppingListRepositoryImpl implements ShoppingItemRepository {
+@Injectable({
+  providedIn: 'root',
+})
+export class ShoppingListRepository {
   private http = inject(HttpClient);
 
   private readonly baseUrl = environment.BASE_URL;
 
-  add(item: ShoppingItem): Observable<void> {
-    return of();
+  add(item: ShoppingItem): Observable<BaseResponseInterface<ShoppingItem>> {
+    return this.http.post<BaseResponseInterface<ShoppingItem>>(
+      `${this.baseUrl}/shopping-list`,
+      item
+    );
   }
 
   get(): Observable<BaseResponseInterface<ShoppingItem[]>> {
