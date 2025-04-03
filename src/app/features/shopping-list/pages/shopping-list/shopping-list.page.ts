@@ -1,5 +1,5 @@
-import { Component, inject, Injector, OnInit } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { Component, DestroyRef, inject, Injector, OnInit } from '@angular/core';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from 'src/app/features/shared/module/ionic.module';
 import { ActivatedRoute } from '@angular/router';
@@ -10,8 +10,13 @@ import {
 import { ShoppingItem } from 'src/app/core/domains/shopping-list/entities/shopping.item';
 import { addIcons } from 'ionicons';
 import { add } from 'ionicons/icons';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { ShppingListItemUseCase } from 'src/app/core/applications/shopping-list-use-case/shopping-list-item.usecase';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { ShoppingListItemUseCase } from 'src/app/core/applications/shopping-list-use-case/shopping-list-item.usecase';
 import { tap } from 'rxjs';
 
 @Component({
@@ -20,28 +25,26 @@ import { tap } from 'rxjs';
   styleUrls: ['./shopping-list.page.scss'],
   standalone: true,
   imports: [CommonModule, IonicModule, ReactiveFormsModule],
-  providers: [ShppingListItemUseCase],
+  providers: [ShoppingListItemUseCase],
 })
 export class ShoppingListPage implements OnInit {
   private route = inject(ActivatedRoute);
   private layoutService = inject(LayoutService);
-  private shoppingListItemUseCase = inject(ShppingListItemUseCase);
+  private shoppingListItemUseCase = inject(ShoppingListItemUseCase);
   private injector = inject(Injector);
   private fb = inject(FormBuilder);
+  private destroyRef = inject(DestroyRef);
 
-  shoppingList = toSignal(this.shoppingListItemUseCase.get(), {
-    injector: this.injector,
-    initialValue: [] as ShoppingItem[],
-  });
+  shoppingList = this.shoppingListItemUseCase.shoppingList;
 
   isModalOpen = false;
   formGroup!: FormGroup;
 
   constructor() {
+    this.shoppingListItemUseCase.loadShoppingList();
     addIcons({ add });
-
     this.formGroup = this.fb.group({
-      name: [],
+      name: ['', Validators.required],
     });
   }
 
@@ -56,7 +59,12 @@ export class ShoppingListPage implements OnInit {
     this.isModalOpen = isOpen;
   }
 
-  addShoppingList() {}
+  async addShoppingList() {
+    if (this.formGroup.invalid) return;
+    await this.shoppingListItemUseCase.add(this.formGroup.value);
+    this.formGroup.reset();
+    this.setOpen(false);
+  }
 
   openShoppingList(shoppingList: any) {
     console.log('sono aperto');

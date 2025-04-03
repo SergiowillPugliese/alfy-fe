@@ -17,6 +17,7 @@ import {
   IonCardHeader,
   IonCardSubtitle,
   IonCardTitle,
+  IonFooter,
 } from '@ionic/angular/standalone';
 
 import { NgModule } from '@angular/core';
@@ -40,6 +41,7 @@ export const ionicModuleArray = [
   IonCardHeader,
   IonCardSubtitle,
   IonCardTitle,
+  IonFooter,
 ];
 
 @NgModule({

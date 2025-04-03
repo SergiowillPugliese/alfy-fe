@@ -13,8 +13,6 @@ import {
 
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
-import { SHOPPING_ITEM_REPOSITORY } from './app/core/domains/shopping-list/repository/shopping-item.repository';
-import { ShoppingListRepositoryImpl } from './app/infrastructure/shopping-list-repository-impl/shopping-list.repository.impl';
 import { provideHttpClient } from '@angular/common/http';
 
 bootstrapApplication(AppComponent, {
@@ -27,6 +25,5 @@ bootstrapApplication(AppComponent, {
       withViewTransitions()
     ),
     provideHttpClient(),
-    { provide: SHOPPING_ITEM_REPOSITORY, useClass: ShoppingListRepositoryImpl },
   ],
 });
