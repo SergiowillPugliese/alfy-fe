@@ -19,8 +19,12 @@ import {
   IonCardTitle,
   IonFooter,
 } from '@ionic/angular/standalone';
-
+import { addIcons } from 'ionicons';
+import { heart, add, checkmarkCircleOutline } from 'ionicons/icons';
 import { NgModule } from '@angular/core';
+
+// Registra le icone
+addIcons({ heart, add, checkmarkCircleOutline });
 
 export const ionicModuleArray = [
   IonContent,

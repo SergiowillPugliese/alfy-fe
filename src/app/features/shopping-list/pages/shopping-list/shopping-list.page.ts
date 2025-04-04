@@ -8,7 +8,6 @@ import {
   LayoutSignal,
 } from 'src/app/features/shared/services/layout.service';
 import { ShoppingItem } from 'src/app/core/domains/shopping-list/entities/shopping.item';
-import { addIcons } from 'ionicons';
 import { add } from 'ionicons/icons';
 import {
   FormBuilder,
@@ -42,7 +41,6 @@ export class ShoppingListPage implements OnInit {
 
   constructor() {
     this.shoppingListItemUseCase.loadShoppingList();
-    addIcons({ add });
     this.formGroup = this.fb.group({
       name: ['', Validators.required],
     });

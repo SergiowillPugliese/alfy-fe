@@ -5,16 +5,25 @@
   <div class="flex flex-col lg:flex-row gap-3">
     @for (item of shoppingListValue; track item._id) {
     <div class="pb-3 w-full lg:w-[20rem]">
-      <ion-card
-        class="ion-padding cursor-pointer"
-        (click)="openShoppingList(item.list)"
-      >
-        <ion-card-header>
-          <ion-card-title>{{ item.name }}</ion-card-title>
-          <ion-card-subtitle>Mettere la data</ion-card-subtitle>
+      <ion-card color="light" class="cursor-pointer"
+        (click)="openShoppingList(item.list)">
+        <ion-card-header class="ion-padding">
+          <ion-card-title class="flex justify-between items-center">
+            <span>{{ item.name }}</span>
+            <ion-icon color="success" *ngIf="item.bought" name="checkmark-circle-outline"></ion-icon>
+          </ion-card-title>
         </ion-card-header>
 
-        <ion-card-content>{{ item.list.length || 'pippo' }}</ion-card-content>
+        <ion-card-content>
+          <div class="flex flex-col gap-1">
+            <span>
+              Numero pezzi: {{ item.list.length }}
+            </span>
+            <span class="text-xs">Ultimo aggiornamento:
+              {{ item.updatedAt | date: 'dd/MM/yyyy' }}
+            </span>
+          </div>
+        </ion-card-content>
       </ion-card>
     </div>
     }
@@ -37,8 +46,8 @@
 
   <ion-modal [isOpen]="isModalOpen">
     <ng-template>
-      <ion-header class="ion-padding">
-        <ion-toolbar>
+      <ion-header>
+        <ion-toolbar color="primary" class="px-3">
           <ion-buttons slot="end">
             <ion-button (click)="setOpen(false)">Close</ion-button>
           </ion-buttons>
@@ -46,7 +55,7 @@
         </ion-toolbar>
       </ion-header>
       <ion-content>
-        <p class="p-3 pb-5">
+        <p class="p-3">
           Inserisci un nome per la tua lista della spesa.
           <br />
           es: supermercato, casalinghi, cane/gatto
@@ -56,12 +65,8 @@
           <div>
             <ion-list>
               <ion-item>
-                <ion-input
-                  label="Nome lista della spesa"
-                  labelPlacement="stacked"
-                  [clearInput]="true"
-                  formControlName="name"
-                >
+                <ion-input label="Nome lista della spesa" labelPlacement="stacked" [clearInput]="true"
+                  formControlName="name">
                 </ion-input>
               </ion-item>
             </ion-list>
@@ -69,11 +74,7 @@
         </form>
       </ion-content>
       <ion-footer>
-        <ion-button
-          [disabled]="formGroup.invalid"
-          class="w-full"
-          (click)="addShoppingList()"
-        >
+        <ion-button [disabled]="formGroup.invalid" class="w-full" (click)="addShoppingList()">
           Aggiungi
         </ion-button>
       </ion-footer>

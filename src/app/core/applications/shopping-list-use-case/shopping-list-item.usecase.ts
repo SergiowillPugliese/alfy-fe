@@ -1,10 +1,7 @@
-import { Injectable, inject, signal, computed, Injector } from '@angular/core';
+import { Injectable, inject, signal, computed } from '@angular/core';
 import { ShoppingItem } from '../../domains/shopping-list/entities/shopping.item';
-import { catchError, filter, map, Observable, of, take, tap } from 'rxjs';
 import { ToastService } from 'src/app/features/shared/services/toast.service';
 import { ShoppingListRepository } from 'src/app/infrastructure/shopping-list-repository-impl/shopping-list.repository';
-import { merge, switchMap } from 'rxjs';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { firstValueFrom } from 'rxjs';
 
 @Injectable()

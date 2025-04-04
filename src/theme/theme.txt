@@ -1,0 +1,115 @@
+Ecco una guida per usare questa palette di colori nei vari elementi dell’app, in modo da mantenere 
+coerenza e trasmettere il messaggio giusto per ciascun tipo di interazione:
+
+1. Colore Primario (#5D9B9B)
+Uso:
+Barra di navigazione (header): Imposta il colore della toolbar o della navbar con 
+il colore primario per un aspetto solido e affidabile.
+
+Pulsanti principali: Per i pulsanti più importanti come "Salva", "Aggiungi", "Conferma", 
+usa questo colore per dare un'idea di stabilità e sicurezza.
+
+Sfondo di sezioni principali o card: Per aree importanti dove vuoi che l'utente si concentri, 
+come la parte principale della tua dashboard o schermate principali.
+
+
+
+2. Colore Secondario (#F1C40F)
+Uso:
+Pulsanti secondari: Usa questo giallo dorato per pulsanti secondari o azioni che non sono primarie 
+ma comunque rilevanti, come "Opzioni" o "Dettagli".
+
+Icone o highlights: Può essere usato per evidenziare piccole icone o sezioni, ad esempio per mettere 
+in evidenza numeri, indicatori di progresso o piccole notifiche di attenzione.
+
+Bordi e separatori: Aggiungi il giallo dorato come linea di separazione tra sezioni o nei bordi per dare un senso di organizzazione.
+
+
+
+3. Colore Terziario (#1ABC9C)
+Uso:
+Indicatori di successo o conferma: Usa il verde per mostrare azioni completate correttamente, 
+come "Attività completata", "Salvato con successo" o "Operazione riuscita".
+
+Bottoni di conferma: Se hai bottoni che confermano azioni positive, come “OK” o “Conferma”, 
+il verde è ideale per mantenere il tono positivo e rassicurante.
+
+Sezioni informative: Per piccole card o box informativi che vogliono trasmettere calma e positività, 
+come messaggi di benvenuto o "Nessuna notifica".
+
+4. Colore di Successo (#22C55E)
+Uso:
+
+Indicatori di successo (azioni completate): Usa questo verde brillante per messaggi di successo, 
+ad esempio notifiche di pagamento riuscito o attività completata.
+
+Pulsanti per azioni positive: Usalo nei pulsanti per confermare azioni che sono particolarmente positive, come "Aggiungi" o "Completa".
+
+
+
+5. Colore di Avviso (#F39C12)
+Uso:
+Messaggi di avviso o attenzioni: Usa il giallo oro per messaggi che richiedono attenzione, ma non urgenza, 
+come "Carica prima la tua lista della spesa" o “Aggiorna le tue informazioni”.
+
+Pulsanti secondari importanti: Se vuoi un pulsante che emerga ma che non sia il principale, usa questo 
+colore per pulsanti che devono attirare attenzione senza essere troppo invadenti, come "Modifica", "Riprova", "Sospendi".
+
+
+
+6. Colore di Pericolo (#E74C3C)
+Uso:
+Messaggi di errore o allerta: Usa il rosso per notifiche urgenti, come “Errore durante il salvataggio”, 
+“Autenticazione fallita” o altre situazioni che necessitano una risposta immediata.
+
+Pulsanti di annullamento o cancellazione: Usalo nei pulsanti per azioni potenzialmente dannose o 
+irreversibili, come "Annulla", "Elimina", "Rimuovi".
+
+
+
+7. Colore di Sfondo Chiaro (#F8F9F9)
+Uso:
+Sfondo principale delle schermate: Usa questo colore per sfondi di schermate e pagine principali, 
+per dare un senso di pulizia e leggerezza.
+
+Card e box informativi: Utilizza il colore chiaro per il background delle card o dei box che contengono 
+informazioni secondarie, per mantenere un contrasto delicato con il testo.
+
+
+
+8. Colore Medio (#BDC3C7)
+Uso:
+Testo secondario e placeholder: Usa questo grigio per testi meno importanti, come descrizioni, testi di aiuto o placeholder nei form.
+
+Bordi e linee di separazione: Usalo per bordi sottili o linee di separazione tra elementi visivi.
+
+
+
+9. Colore Scuro (#34495E)
+Uso:
+Testo principale: Utilizza il blu scuro per il testo primario, come il titolo delle pagine, i 
+titoli delle sezioni, o i testi delle voci di menu per renderli leggibili e contrastati.
+
+Footer e bordi della barra di navigazione: Un altro buon posto per questo colore è nei footer o 
+nei bordi della barra di navigazione per dare stabilità senza essere troppo invadente.
+
+Esempio di struttura visiva:
+Header/Toolbar: --ion-color-primary (#5D9B9B)
+
+Pulsante principale (Salva/Conferma): --ion-color-primary (#5D9B9B)
+
+Pulsante secondario (Modifica): --ion-color-secondary (#F1C40F)
+
+Pulsante di conferma (OK): --ion-color-tertiary (#1ABC9C)
+
+Messaggio di successo: --ion-color-success (#22C55E)
+
+Messaggio di avviso: --ion-color-warning (#F39C12)
+
+Messaggio di errore: --ion-color-danger (#E74C3C)
+
+Sfondo principale della pagina: --ion-color-light (#F8F9F9)
+
+Testo principale: --ion-color-dark (#34495E)
+
+Testo secondario o placeholder: --ion-color-medium (#BDC3C7)
