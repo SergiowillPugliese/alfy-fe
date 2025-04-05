@@ -1,5 +1,5 @@
 export class LeftMenu {
-  icon!: string;
+  icon?: string;
   label!: string;
   link!: string;
 

@@ -11,8 +11,13 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'shopping-list',
+        redirectTo: 'home',
         pathMatch: 'full',
+      },
+      {
+        path: 'home',
+        title: 'Home',
+        loadComponent: () => import('./features/home/home.page').then(m => m.HomePage)
       },
       {
         path: 'shopping-list',

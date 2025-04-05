@@ -12,8 +12,9 @@
             <ion-item
               lines="none"
               detail="false"
-              *ngFor="let item of leftMenu()"
+              *ngFor="let item of leftMenu(); let i = index"
               [routerLink]="item.link"
+              (click)="setDomainOptions(item.link)"
             >
               <!-- <ion-icon slot="start" [name]="item.icon"></ion-icon> -->
               <ion-label>{{ item.label }}</ion-label>
@@ -30,6 +31,15 @@
             <ion-menu-button></ion-menu-button>
           </ion-buttons>
           <ion-title>{{ title() }}</ion-title>
+        </ion-toolbar>
+        <ion-toolbar>
+          <nav class="flex gap-4 px-4">
+            @for (option of domainOptionsMenu(); track option.link) {
+            <a [routerLink]="option.link" routerLinkActive="font-bold" [routerLinkActiveOptions]="{exact: true}">
+              {{ option.label }}
+            </a>
+            }
+          </nav>
         </ion-toolbar>
       </ion-header>
       <ion-content>
