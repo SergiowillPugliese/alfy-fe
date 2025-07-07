@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, Injector, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, Injector, OnInit, signal, Signal } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from 'src/app/features/shared/module/ionic.module';
@@ -17,7 +17,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { ShoppingListItemUseCase } from 'src/app/core/applications/shopping-list-use-case/shopping-list-item.usecase';
-import { tap } from 'rxjs';
+import { ModalController } from '@ionic/angular/standalone';
+import { ModalComponent } from 'src/app/features/shared/components/modal/modal.component';
 
 @Component({
   selector: 'app-shopping-list',
@@ -34,6 +35,7 @@ export class ShoppingListPage implements OnInit {
   private injector = inject(Injector);
   private fb = inject(FormBuilder);
   private destroyRef = inject(DestroyRef);
+  private modalCtrl = inject(ModalController);
 
   shoppingList = this.shoppingListItemUseCase.shoppingList;
 
@@ -66,7 +68,23 @@ export class ShoppingListPage implements OnInit {
     this.setOpen(false);
   }
 
-  openShoppingList(shoppingList: any) {
-    console.log('sono aperto');
+  async openShoppingList(shoppingList: ShoppingItem) {
+    console.log('shoppingList', shoppingList);
+    const modal = await this.modalCtrl.create({
+      component: ModalComponent<ShoppingItem>,
+      componentProps: {
+        data: signal(shoppingList.list),
+        title: signal(shoppingList.name),
+        isEditable: signal(true)
+      },
+      cssClass: 'modal-class',
+    });
+    modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+
+    if (role === 'confirm') {
+      console.log('data', data);
+    }
   }
 }

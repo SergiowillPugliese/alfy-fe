@@ -7,14 +7,23 @@
     <div class="pb-3 w-full lg:w-[20rem]">
       <ion-card
         class="ion-padding cursor-pointer"
-        (click)="openShoppingList(item.list)"
+        (click)="openShoppingList(item)"
       >
-        <ion-card-header>
+        <ion-card-header class="pb-4">
           <ion-card-title>{{ item.name }}</ion-card-title>
-          <ion-card-subtitle>Mettere la data</ion-card-subtitle>
         </ion-card-header>
 
-        <ion-card-content>{{ item.list.length || 'pippo' }}</ion-card-content>
+        <ion-card-content class="p-0">
+          <p class="text-sm text-gray-500">
+            Creata il {{ item.createdAt | date: 'dd/MM/yyyy' }}
+          </p>
+          <p class="text-sm text-gray-500">
+            Ultima modifica il {{ item.updatedAt | date: 'dd/MM/yyyy' }}
+          </p>
+          <p class="text-sm text-gray-500">
+            {{ item.list.length }} articoli
+          </p>
+        </ion-card-content>
       </ion-card>
     </div>
     }

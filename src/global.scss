@@ -26,6 +26,10 @@
 @import "@ionic/angular/css/flex-utils.css";
 @import "tailwindcss";
 
+.card-content-md {
+    padding: 0;
+}
+
 /**
  * Ionic Dark Mode
  * -----------------------------------------------------
